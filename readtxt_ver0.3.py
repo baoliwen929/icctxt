@@ -1,19 +1,36 @@
 ﻿#! c:\python27\python
 #coding=utf-8
+from __future__ import division
 import re
 import os
 import xlrd
 import xlwt
 import sys
 
-#创建一个存储文件夹
-if os.path.exists(r"c:\sample\fm91cp"):
+#输入文件地址
+txtfile_path=raw_input("please input txt file path,for example:c:/icctxt/fm91cp1109.txt \n")
+if os.path.exists(txtfile_path):
 	pass
 else:
-	os.mkdir(r"c:\sample\fm91cp")
+	print"the file doesn't exit,please check the path"
+	txtfile_path=raw_input("please input txt file path,for example:c:/icctxt/fm91cp1109.txt \n")
+
+#输出文件目录
+excelfile_path=raw_input("please input excel file folder,for example:c:/iccexcel \n")
+
+#创建一个存储文件夹
+if os.path.exists(excelfile_path):
+	print "the pat exits,please confirm do you want to place the file.(y/n) \n"
+	next_requst=raw_input()
+	if next_requst=="y":
+		pass
+	else:
+		excelfile_path=raw_input("please input excel file path,for example:c:/icctxt \n")	
+else:
+	os.mkdir(excelfile_path)
 
 #文件读取
-txtfile=open(r"c:\sample\fm91cp1109.txt","r") 
+txtfile=open(txtfile_path,"r") 
 lines=txtfile.readlines()                      #读取文件，将文件读取为一个列表
 length=len(lines)                              #获取文件行数
 #print length
@@ -53,18 +70,19 @@ while (j<length):    #遍历txt文件
 	else:
 		pass
 	j=j+1
-print AIN_num
-print CIN_num
-print COUT_num
-print AOUT_num
+#print AIN_num
+#print CIN_num
+#print COUT_num
+#print AOUT_num
 
 AIN_row=1
 CIN_row=1
 COUT_row=1
 AOUT_row=1
 
-#读取AIN点
-while (i<length):
+
+for i in range(0,length):
+	
 	if ("TYPE" in lines[i]):
 		if ("AIN" in lines[i]):        #获取标志行type=
 			AIN_list=[]                 #定义一个列表()
@@ -79,7 +97,7 @@ while (i<length):
 				AIN_list_element=AIN_list_element.split("\n")[0]  #删除换行符\n
 				AIN_list_no_equal.append(AIN_list_element)   #将没有等号的新数据放入定义列表
 			AIN_col=0
-			print AIN_list_no_equal
+			#print AIN_list_no_equal
 			while AIN_col<len(AIN_list_no_equal):                 #循环将数据放入EXCEl中
 				AIN.write(AIN_row,AIN_col,AIN_list_no_equal[AIN_col])
 				AIN_col=AIN_col+1
@@ -97,7 +115,7 @@ while (i<length):
 				CIN_list_element=CIN_list_element.split("\n")[0]  
 				CIN_list_no_equal.append(CIN_list_element)  
 			CIN_col=0
-			print CIN_list_no_equal
+			#print CIN_list_no_equal
 			while CIN_col<len(CIN_list_no_equal):                 
 				CIN.write(CIN_row,CIN_col,CIN_list_no_equal[CIN_col])
 				CIN_col=CIN_col+1
@@ -115,7 +133,7 @@ while (i<length):
 				COUT_list_element=COUT_list_element.split("\n")[0]  
 				COUT_list_no_equal.append(COUT_list_element)  
 			COUT_col=0
-			print COUT_list_no_equal
+			#print COUT_list_no_equal
 			while COUT_col<len(COUT_list_no_equal):                 
 				COUT.write(COUT_row,COUT_col,COUT_list_no_equal[COUT_col])
 				COUT_col=COUT_col+1
@@ -132,7 +150,7 @@ while (i<length):
 				AOUT_list_element=AOUT_list_element.split("\n")[0]  
 				AOUT_list_no_equal.append(AOUT_list_element)  
 			AOUT_col=0
-			print AOUT_list_no_equal
+			#print AOUT_list_no_equal
 			while AOUT_col<len(AOUT_list_no_equal):                 
 				AOUT.write(AOUT_row,AOUT_col,AOUT_list_no_equal[AOUT_col])
 				AOUT_col=AOUT_col+1
@@ -142,7 +160,10 @@ while (i<length):
 			pass
 	else:
 		pass
-	i=i+1
+	#进度条显示		
+	sys.stdout.write(str(int((i/(length-1))*100))+'% ||'+'->'+"\r")
+	sys.stdout.flush()
+print
 #AIN title 内容	
 AIN_title=["NAME","TYPE","DESCRIP","PERIOD","IOMOPT","IOM_ID","PNT_NO","SCI","HSCO1","LSCO1","DELTO1", \
 "E01","BAO","BAT","HLOP","HAL","HAT","LAL","LAT","HHAOPT","HHALIM","HHATXT","LLALIM","LLATXT"]
@@ -173,8 +194,10 @@ while AOUT_title_num<len(AOUT_title):
 	AOUT.write(0,AOUT_title_num,AOUT_title[AOUT_title_num])
 	AOUT_title_num=AOUT_title_num+1	
 
-txtfile.close()	
-workbook.save(r"c:\sample\fm91cp\result.xlsx")
+txtfile.close()
+excelfile_name=raw_input("please input the excel file name,for example:fm91cp.xlsx \n")
+excelfile=excelfile_path+"/"+excelfile_name	
+workbook.save(excelfile)
 
 
 
