@@ -6,7 +6,6 @@ import os
 import xlrd
 import xlwt
 import sys
-import sys
 #更改全局默认编码方式为UTF-8
 default_encoding="utf-8"
 if(default_encoding!=sys.getdefaultencoding()):
@@ -307,6 +306,8 @@ while os.path.exists(excelfile_path)==1:
 		break
 	else:
 		excelfile_path=raw_input("please input excel file folder,for example: c:/iccexcel.xlsx \n")
+		(excel_dir,excel_name)=os.path.split(excelfile_path)
+os.mkdir(excel_dir)
 workbook.save(excelfile_path)
 
 

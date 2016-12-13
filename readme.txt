@@ -2,6 +2,11 @@
 from icc_txt file get useful information, generate an excel file.
 generate a txt which is similar with icc_txt from an excel file.
 use the number of lines to get information to generate excel file.
+********************************************
+ver0.8
+
+1. fix select file error.
+2. add new program excel_to_txt.py
 
 
 ********************************************
