@@ -6,6 +6,12 @@ import os
 import xlrd
 import xlwt
 import sys
+import sys
+#更改全局默认编码方式为UTF-8
+default_encoding="utf-8"
+if(default_encoding!=sys.getdefaultencoding()):
+    reload(sys)
+    sys.setdefaultencoding(default_encoding)
 
 #输入文件地址
 txtfile_path=raw_input("please input txt file path,for example:c:/icctxt/fm91cp1109.txt \n")
