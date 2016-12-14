@@ -1,7 +1,18 @@
-# icctxt
-from icc_txt file get useful information, generate an excel file.
-generate a txt which is similar with icc_txt from an excel file.
-use the number of lines to get information to generate excel file.
+
+funtion:
+txt_to_excel.exe:this program can generate an excel file from a standard CP export txt file using iccprt command
+excel_to_addtxt.exe:this program can generate an txt file which can import to CP with iccdrvr command from excel file (add command).
+excel_to_modify.exe:this program can generate an txt file which can import to CP with iccdrvr command from excel file (modify command).
+
+method:
+please refer to software instruction displayed on the scrren when you run software.
+********************************************
+ver1.0
+
+1. fix some BUG.
+2. add new program excel_to_modify.py
+3. add new program excel_to_addtxt.py
+4. generate .exe file.
 ********************************************
 ver0.8
 
