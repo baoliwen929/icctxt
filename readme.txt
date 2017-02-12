@@ -9,6 +9,11 @@ please refer to software instruction displayed on the scrren when you run softwa
 ********************************************
 ver1.0
 
+1. try to use class to reconstruction.
+
+********************************************
+ver1.0
+
 1. fix some BUG.
 2. add new program excel_to_modify.py
 3. add new program excel_to_addtxt.py
