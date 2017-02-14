@@ -73,8 +73,11 @@ for num in range(sheet_num):
 				content_end="END"+"\n"
 			else:
 				content_end=""
-			
-			content= sheet_list.cell_value(0,j).strip()+"="+sheet_list.cell_value(i,j).strip()+"\n"+content_end
+			if type(sheet_list.cell_value(i,j))==float:
+				value=str(int(sheet_list.cell_value(i,j)))
+			else:
+				value=sheet_list.cell_value(i,j)
+			content=str(sheet_list.cell_value(0,j)).strip()+"="+value.strip()+"\n"+content_end
 			name_add=content.replace("NAME=","MODIFY ")
 			name_no_type=re.sub("TYPE=.*\n","",name_add)
 			icctxt.write(name_no_type)

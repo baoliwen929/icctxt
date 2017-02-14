@@ -109,9 +109,9 @@ for i in range(0,length):
 	if ("TYPE" in lines[i]):
 		if ("AIN" in lines[i]):        #获取标志行type=
 			AIN_list=[]                 #定义一个列表()
-			AIN_list.extend([lines[i-1],lines[i],lines[i+1],lines[i+2],lines[i+5], \
+			AIN_list.extend([lines[i-1],lines[i],lines[i+1],lines[i+5], \
 			lines[i+6],lines[i+7],lines[i+8],lines[i+9],lines[i+10],lines[i+11],lines[i+12], \
-			lines[i+30],lines[i+31],lines[i+38],lines[i+40],lines[i+41],lines[i+42],lines[i+43],lines[i+47], \
+			lines[i+30],lines[i+31],lines[i+38],lines[i+40],lines[i+41],lines[i+42],lines[i+43],lines[i+44],lines[i+47], \
 			lines[i+48],lines[i+49],lines[i+50],lines[i+51],lines[i+55]]) #将获取的符合条件的行赋值到新列表
 			AIN_list_no_equal=[]           #定义一个没有等号的空列表
 			
@@ -137,7 +137,7 @@ for i in range(0,length):
 		elif (("CIN" in lines[i]) and ("CINR" not in lines[i])):  #CIN
 			CIN_list=[]                 
 			CIN_list.extend([lines[i-1],lines[i],lines[i+1],lines[i+2],lines[i+5], \
-			lines[i+6],lines[i+7],lines[i+8],lines[i+9],lines[i+10],lines[i+11], \
+			lines[i+6],lines[i+7],lines[i+8],lines[i+9],lines[i+10],lines[i+11],lines[i+17], \
 			lines[i+19],lines[i+22],lines[i+23]])
 			CIN_list_no_equal=[]
 			for CIN_list_element in CIN_list:			
@@ -311,15 +311,15 @@ for i in range(0,length):
 print
 
 #AIN title 内容	
-AIN_title=["COMPND","TAGNAME","NAME","TYPE","DESCRIP","PERIOD","IOMOPT","IOM_ID","PNT_NO","SCI","HSCO1","LSCO1","DELTO1", \
-"E01","BAO","BAT","HLOP","HAL","HAT","LAL","LAT","HHAOPT","HHALIM","HHATXT","LLALIM","LLATXT","MEAS"]
+AIN_title=["COMPND","TAGNAME","NAME","TYPE","DESCRIP","IOMOPT","IOM_ID","PNT_NO","SCI","HSCO1","LSCO1","DELTO1", \
+"E01","BAO","BAT","HLOP","HAL","HAT","LAL","LAT","HLDB","HHAOPT","HHALIM","HHATXT","LLALIM","LLATXT","MEAS"]
 AIN_title_num=0
 while AIN_title_num<len(AIN_title):
 	AIN.write(0,AIN_title_num,AIN_title[AIN_title_num])
 	AIN_title_num=AIN_title_num+1
 
 #CIN title 内容	
-CIN_title=["COMPND","TAGNAME","NAME","TYPE","DESCRIP","PERIOD","IOMOPT","IOM_ID","PNT_NO","ANM","NM0","NM1","IVO","SAO", \
+CIN_title=["COMPND","TAGNAME","NAME","TYPE","DESCRIP","PERIOD","IOMOPT","IOM_ID","PNT_NO","ANM","NM0","NM1","IVO","INVALM","SAO", \
 "BAO","BAT"]
 CIN_title_num=0
 while CIN_title_num<len(CIN_title):

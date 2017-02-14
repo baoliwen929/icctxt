@@ -93,3 +93,5 @@ ENV/
 *.xlsx
 *.xlx
 *.exe
+*.txt
+*.xls
